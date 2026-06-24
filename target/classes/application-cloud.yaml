@@ -11,3 +11,9 @@ spring:
 storage:
   gcs:
     prefix: ${GCS_PREFIX:}
+
+cloud-run:
+  base-url: https://linko-java-api-mid-430799291004.us-central1.run.app
+  audience: https://linko-java-api-mid-430799291004.us-central1.run.app
+  remote-api:
+    enabled: ${CLOUD_RUN_REMOTE_API:false}

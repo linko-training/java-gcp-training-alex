@@ -1,36 +1,26 @@
 package com.alex.demo.client;
 
 import com.alex.demo.config.CloudRunProperties;
+import com.alex.demo.config.ConditionalOnCloudRunAuth;
 import com.alex.demo.model.FileMetadata;
 import com.alex.demo.model.FileUploadRequest;
-import com.alex.demo.service.GcpIdTokenService;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
-import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.util.List;
 
 @Component
-@ConditionalOnProperty(prefix = "cloud-run.client", name = "enabled", havingValue = "true")
+@ConditionalOnCloudRunAuth
 public class CloudRunApiClient {
 
     private final RestClient restClient;
 
-    public CloudRunApiClient(CloudRunProperties properties, GcpIdTokenService tokenService) {
+    public CloudRunApiClient(CloudRunProperties properties, CloudRunHttpLoggingInterceptor loggingInterceptor) {
         this.restClient = RestClient.builder()
                 .baseUrl(properties.getBaseUrl())
-                .requestInterceptor((request, body, execution) -> {
-                    try {
-                        request.getHeaders().setBearerAuth(tokenService.getToken());
-                    } catch (IOException e) {
-                        throw new UncheckedIOException("No se pudo obtener el ID token de GCP", e);
-                    }
-                    return execution.execute(request, body);
-                })
+                .requestInterceptor(loggingInterceptor)
                 .build();
     }
 

@@ -1,12 +1,15 @@
 C:\Users\L_user\Documents\api-mid-gcp\src\main\java\com\alex\demo\client\CloudRunApiClient.java
+C:\Users\L_user\Documents\api-mid-gcp\src\main\java\com\alex\demo\client\CloudRunHttpLoggingInterceptor.java
 C:\Users\L_user\Documents\api-mid-gcp\src\main\java\com\alex\demo\config\CloudRunClientConfig.java
 C:\Users\L_user\Documents\api-mid-gcp\src\main\java\com\alex\demo\config\CloudRunProperties.java
+C:\Users\L_user\Documents\api-mid-gcp\src\main\java\com\alex\demo\config\ConditionalOnCloudRunAuth.java
 C:\Users\L_user\Documents\api-mid-gcp\src\main\java\com\alex\demo\controller\FileController.java
 C:\Users\L_user\Documents\api-mid-gcp\src\main\java\com\alex\demo\DemoApplication.java
 C:\Users\L_user\Documents\api-mid-gcp\src\main\java\com\alex\demo\exception\FileNotFoundException.java
 C:\Users\L_user\Documents\api-mid-gcp\src\main\java\com\alex\demo\model\FileMetadata.java
 C:\Users\L_user\Documents\api-mid-gcp\src\main\java\com\alex\demo\model\FileUploadRequest.java
 C:\Users\L_user\Documents\api-mid-gcp\src\main\java\com\alex\demo\runner\CloudRunClientRunner.java
+C:\Users\L_user\Documents\api-mid-gcp\src\main\java\com\alex\demo\service\CloudRunRemoteStorageService.java
 C:\Users\L_user\Documents\api-mid-gcp\src\main\java\com\alex\demo\service\GcpIdTokenService.java
 C:\Users\L_user\Documents\api-mid-gcp\src\main\java\com\alex\demo\service\GcsStorageService.java
 C:\Users\L_user\Documents\api-mid-gcp\src\main\java\com\alex\demo\service\LocalStorageService.java
