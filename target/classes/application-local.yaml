@@ -1,0 +1,9 @@
+spring:
+  autoconfigure:
+    exclude:
+      - com.google.cloud.spring.autoconfigure.core.GcpContextAutoConfiguration
+      - com.google.cloud.spring.autoconfigure.storage.GcpStorageAutoConfiguration
+
+storage:
+  local:
+    path: ./local-data
