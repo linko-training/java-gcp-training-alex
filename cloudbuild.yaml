@@ -27,5 +27,5 @@ substitutions:
   _SERVICE_NAME: 'linko-java-api-mid'   # ej: linko-java-api-jr
   _BUCKET_PREFIX: 'mid-uploads/'         # ej: jr-uploads/
 
-  options:
-    logging: CLOUD_LOGGING_ONLY
+options:
+  logging: CLOUD_LOGGING_ONLY
