@@ -7,6 +7,7 @@ import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import java.util.stream.StreamSupport;
 
 @Service
 @Profile("cloud")
+@ConditionalOnProperty(prefix = "cloud-run.remote-api", name = "enabled", havingValue = "false", matchIfMissing = true)
 public class GcsStorageService implements StorageService {
 
     private final Storage storage;

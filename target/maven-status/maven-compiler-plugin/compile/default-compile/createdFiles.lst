@@ -6,10 +6,15 @@ com\alex\demo\model\FileUploadRequest.class
 com\alex\demo\exception\FileNotFoundException.class
 com\alex\demo\runner\CloudRunClientRunner.class
 com\alex\demo\model\FileMetadata.class
+com\alex\demo\client\CloudRunHttpLoggingInterceptor.class
 com\alex\demo\service\LocalStorageService.class
 com\alex\demo\client\CloudRunApiClient.class
 com\alex\demo\DemoApplication.class
 com\alex\demo\service\GcpIdTokenService.class
 com\alex\demo\controller\FileController.class
 com\alex\demo\config\CloudRunClientConfig.class
+com\alex\demo\config\ConditionalOnCloudRunAuth.class
 com\alex\demo\service\StorageService.class
+com\alex\demo\config\CloudRunProperties$RemoteApi.class
+com\alex\demo\service\CloudRunRemoteStorageService.class
+com\alex\demo\client\CloudRunHttpLoggingInterceptor$BufferingClientHttpResponse.class

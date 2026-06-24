@@ -4,4 +4,5 @@ $env:GCS_BUCKET = if ($env:GCS_BUCKET) { $env:GCS_BUCKET } else { "linko-challen
 $env:GCS_PREFIX = if ($env:GCS_PREFIX) { $env:GCS_PREFIX } else { "mid-uploads/" }
 Write-Host "Perfil: cloud (GCS bucket: $env:GCS_BUCKET, prefix: $env:GCS_PREFIX)"
 Write-Host "Requiere credenciales GCP: define GOOGLE_APPLICATION_CREDENTIALS con el JSON de la service account"
+Write-Host "Para llamar Cloud Run con token automatico usa: .\run-cloud-remote.ps1"
 .\mvnw.cmd spring-boot:run -Pcloud
