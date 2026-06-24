@@ -1,0 +1,8 @@
+com\alex\demo\service\LocalStorageService.class
+com\alex\demo\service\GcsStorageService.class
+com\alex\demo\DemoApplication.class
+com\alex\demo\model\FileUploadRequest.class
+com\alex\demo\controller\FileController.class
+com\alex\demo\exception\FileNotFoundException.class
+com\alex\demo\service\StorageService.class
+com\alex\demo\model\FileMetadata.class

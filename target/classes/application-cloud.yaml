@@ -1,0 +1,13 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  cloud:
+    gcp:
+      project-id: ${GCP_PROJECT_ID:linko-training}
+      storage:
+        bucket: ${GCS_BUCKET:linko-challenge-files}
+
+storage:
+  gcs:
+    prefix: ${GCS_PREFIX:}
