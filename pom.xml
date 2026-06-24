@@ -108,5 +108,11 @@
 				<spring.profiles.active>cloud</spring.profiles.active>
 			</properties>
 		</profile>
+		<profile>
+			<id>client</id>
+			<properties>
+				<spring.profiles.active>client</spring.profiles.active>
+			</properties>
+		</profile>
 	</profiles>
 </project>
