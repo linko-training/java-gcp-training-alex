@@ -1,0 +1,13 @@
+spring:
+  main:
+    web-application-type: none
+  autoconfigure:
+    exclude:
+      - com.google.cloud.spring.autoconfigure.core.GcpContextAutoConfiguration
+      - com.google.cloud.spring.autoconfigure.storage.GcpStorageAutoConfiguration
+
+cloud-run:
+  base-url: https://linko-java-api-mid-430799291004.us-central1.run.app
+  audience: https://linko-java-api-mid-430799291004.us-central1.run.app
+  client:
+    enabled: true

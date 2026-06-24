@@ -4,6 +4,7 @@ import com.alex.demo.exception.FileNotFoundException;
 import com.alex.demo.model.FileMetadata;
 import com.alex.demo.model.FileUploadRequest;
 import com.alex.demo.service.StorageService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/files")
+@Profile("!client")
 public class FileController {
 
     private final StorageService storageService;
