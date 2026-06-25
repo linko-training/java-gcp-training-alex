@@ -1,8 +1,10 @@
 package com.alex.demo.controller;
 
 import com.alex.demo.exception.FileNotFoundException;
+import com.alex.demo.model.CheckHelpResponse;
 import com.alex.demo.model.FileMetadata;
 import com.alex.demo.model.FileUploadRequest;
+import com.alex.demo.service.CheckHelpService;
 import com.alex.demo.service.StorageService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
@@ -21,8 +23,10 @@ public class FileController {
 
     private final StorageService storageService;
 
-    public FileController(StorageService storageService) {
+
+    public FileController(StorageService storageService){
         this.storageService = storageService;
+
     }
 
     @GetMapping
@@ -72,4 +76,6 @@ public class FileController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El campo 'content' debe ser Base64 válido");
         }
     }
+
+
 }
