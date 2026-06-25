@@ -38,10 +38,11 @@
 		</dependency>
 
 		<!-- GCP Storage -->
+
 		<dependency>
 			<groupId>com.google.cloud</groupId>
-			<artifactId>spring-cloud-gcp-starter-storage</artifactId>
-
+			<artifactId>google-cloud-storage</artifactId>
+			<version>2.40.0</version> <!-- usa la última versión estable -->
 		</dependency>
 
 		<!-- OpenAPI/Swagger -->

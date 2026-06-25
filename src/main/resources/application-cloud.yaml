@@ -10,7 +10,7 @@ spring:
 
 storage:
   gcs:
-    prefix: ${GCS_PREFIX:}
+    prefix: ${GCS_PREFIX:mid-uploads/}
 
 cloud-run:
   base-url: https://linko-java-api-mid-430799291004.us-central1.run.app

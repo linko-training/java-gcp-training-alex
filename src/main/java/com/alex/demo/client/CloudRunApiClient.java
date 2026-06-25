@@ -2,6 +2,7 @@ package com.alex.demo.client;
 
 import com.alex.demo.config.CloudRunProperties;
 import com.alex.demo.config.ConditionalOnCloudRunAuth;
+import com.alex.demo.model.FileContentResponse;
 import com.alex.demo.model.FileMetadata;
 import com.alex.demo.model.FileUploadRequest;
 import org.springframework.core.ParameterizedTypeReference;
@@ -29,6 +30,13 @@ public class CloudRunApiClient {
                 .uri("/files")
                 .retrieve()
                 .body(new ParameterizedTypeReference<>() {});
+    }
+
+    public FileContentResponse getFile(String id) {
+        return restClient.get()
+                .uri("/files/{id}", id)
+                .retrieve()
+                .body(FileContentResponse.class);
     }
 
     public FileMetadata uploadFile(FileUploadRequest request) {
