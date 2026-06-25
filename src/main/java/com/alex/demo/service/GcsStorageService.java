@@ -1,6 +1,8 @@
 package com.alex.demo.service;
 
+import com.alex.demo.exception.FileAlreadyExistsException;
 import com.alex.demo.exception.FileNotFoundException;
+import com.alex.demo.model.FileContentResponse;
 import com.alex.demo.model.FileMetadata;
 import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.BlobId;
@@ -11,6 +13,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -34,6 +37,10 @@ public class GcsStorageService implements StorageService {
 
     @Override
     public FileMetadata store(String filename, byte[] content) {
+        if (exists(filename)) {
+            throw new FileAlreadyExistsException(filename);
+        }
+
         String objectKey = objectKey(filename);
         BlobInfo blobInfo = BlobInfo.newBuilder(bucketName, objectKey)
                 .setContentType("text/plain")
@@ -58,9 +65,21 @@ public class GcsStorageService implements StorageService {
     }
 
     @Override
+    public FileContentResponse getFile(String id) {
+        Blob blob = storage.get(BlobId.of(bucketName, objectKey(id)));
+        if (blob == null || !blob.exists()) {
+            throw new FileNotFoundException(id);
+        }
+
+        byte[] content = blob.getContent();
+        String encoded = Base64.getEncoder().encodeToString(content);
+        return new FileContentResponse(id, encoded, content.length);
+    }
+
+    @Override
     public FileMetadata updateFile(String id, String newFilename, byte[] content) {
         Blob blob = storage.get(BlobId.of(bucketName, objectKey(id)));
-        if (blob == null) {
+        if (blob == null || !blob.exists()) {
             throw new FileNotFoundException(id);
         }
 
@@ -83,6 +102,12 @@ public class GcsStorageService implements StorageService {
         if (!deleted) {
             throw new FileNotFoundException(id);
         }
+    }
+
+    @Override
+    public boolean exists(String id) {
+        Blob blob = storage.get(BlobId.of(bucketName, objectKey(id)));
+        return blob != null && blob.exists();
     }
 
     private String objectKey(String filename) {

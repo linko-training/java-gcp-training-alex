@@ -1,6 +1,8 @@
 package com.alex.demo.service;
 
+import com.alex.demo.exception.FileAlreadyExistsException;
 import com.alex.demo.exception.FileNotFoundException;
+import com.alex.demo.model.FileContentResponse;
 import com.alex.demo.model.FileMetadata;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Base64;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -29,6 +32,10 @@ public class LocalStorageService implements StorageService {
 
     @Override
     public FileMetadata store(String filename, byte[] content) {
+        if (exists(filename)) {
+            throw new FileAlreadyExistsException(filename);
+        }
+
         try {
             Path target = resolveFile(filename);
             Files.write(target, content);
@@ -53,6 +60,22 @@ public class LocalStorageService implements StorageService {
                     .toList();
         } catch (IOException e) {
             throw new RuntimeException("Error listando archivos locales", e);
+        }
+    }
+
+    @Override
+    public FileContentResponse getFile(String id) {
+        Path file = resolveFile(id);
+        if (!Files.exists(file)) {
+            throw new FileNotFoundException(id);
+        }
+
+        try {
+            byte[] content = Files.readAllBytes(file);
+            String encoded = Base64.getEncoder().encodeToString(content);
+            return new FileContentResponse(id, encoded, content.length);
+        } catch (IOException e) {
+            throw new RuntimeException("Error leyendo archivo: " + id, e);
         }
     }
 
@@ -88,6 +111,11 @@ public class LocalStorageService implements StorageService {
         } catch (IOException e) {
             throw new RuntimeException("Error eliminando archivo: " + id, e);
         }
+    }
+
+    @Override
+    public boolean exists(String id) {
+        return Files.exists(resolveFile(id));
     }
 
     private Path resolveFile(String filename) {

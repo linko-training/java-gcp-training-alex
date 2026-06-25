@@ -1,4 +1,5 @@
 com\alex\demo\client\CloudRunApiClient$1.class
+com\alex\demo\model\FileContentResponse.class
 com\alex\demo\exception\FileNotFoundException.class
 com\alex\demo\model\CheckHelpResponse.class
 com\alex\demo\model\FileMetadata.class
@@ -12,6 +13,7 @@ com\alex\demo\config\ConditionalOnCloudRunAuth.class
 com\alex\demo\client\CloudRunHttpLoggingInterceptor$BufferingClientHttpResponse.class
 com\alex\demo\controller\checkhealthController.class
 com\alex\demo\config\CloudRunProperties$Client.class
+com\alex\demo\exception\FileAlreadyExistsException.class
 com\alex\demo\service\GcsStorageService.class
 com\alex\demo\config\CloudRunProperties.class
 com\alex\demo\model\FileUploadRequest.class
